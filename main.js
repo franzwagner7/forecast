@@ -104,11 +104,18 @@ async function loadWeather(url) {
         <li>Niederschlag: ${details.precipitation_amount} (mm) </li>
         <li>Relative Luftfeuchtigkeit: ${details.relative_humidity} (%) </li>
         <li>Windrichtung: ${details.wind_from_direction} (°) </li>
-        <li>WIndgeschwindigkeit: ${details.wind_speed* 3.6} (km/h) </li>
+        <li>Windgeschwindigkeit: ${details.wind_speed* 3.6} (km/h) </li>
     </u>
     `;
 
-    marker.setPopupContent(popup).openPopup()
-
+    marker.setPopupContent(popup).openPopup();
 };
 loadWeather("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
+
+// Klick auf die Karte reagieren
+map.on("click", function(evt) {
+    //console.log(evt);
+    let url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${evt.latlng.lat}&lon=${evt.latlng.lng}`;
+
+    loadWeather(url);
+});
