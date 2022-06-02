@@ -90,7 +90,13 @@ async function loadWeather(url) {
     let details = jsondata.properties.timeseries[0].data.instant.details;
     //console.log("Aktuelle Wetterdaten", details);
 
+    let forecastDate = new Date(jsondata.properties.timeseries[0].time);
+    console.log(forecastDate);
+    let forecastLabel = formatDate(forecastDate);
+    console.log(forecastLabel)
+
     let popup = `
+    <strong>Wettervorhersage für ${forecastLabel}</strong>
     <ul>
         <li>Luftdruck: ${details.air_pressure_at_sea_level} (hPa) </li>
         <li>Lufttemperatur: ${details.air_temperature} (°C) </li>
@@ -99,7 +105,7 @@ async function loadWeather(url) {
         <li>Relative Luftfeuchtigkeit: ${details.relative_humidity} (%) </li>
         <li>Windrichtung: ${details.wind_from_direction} (°) </li>
         <li>WIndgeschwindigkeit: ${details.wind_speed* 3.6} (km/h) </li>
-        </u>
+    </u>
     `;
 
     marker.setPopupContent(popup).openPopup()
