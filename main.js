@@ -43,12 +43,12 @@ async function loadWind(url) {
     const response = await fetch(url);
     const jsondata = await response.json();
     let forecastDate = new Date(jsondata[0].header.refTime);
-    console.log("Echtes Datum Erstellung")
-    console.log(forecastDate)
+    //console.log("Echtes Datum Erstellung")
+    //console.log(forecastDate)
     forecastDate.setHours(forecastDate.getHours() + jsondata[0].header.forecastTime);
-    console.log("Echtes Datum Vorhersage")
-    console.log(forecastDate)
-    console.log("Vorhersagezeitpunkt", formatDate(forecastDate));
+    //console.log("Echtes Datum Vorhersage")
+    //console.log(forecastDate)
+    //console.log("Vorhersagezeitpunkt", formatDate(forecastDate));
 
     let forecastLabel = formatDate(forecastDate);
 };
