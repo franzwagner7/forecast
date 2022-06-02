@@ -75,5 +75,11 @@ async function loadWeather(url) {
     const jsondata = await response.json();
     console.log("Jsondaten", jsondata);
 
+    layerControl.addOverlay(overlays.weather, "Wettervorhersage met.no");
+
+    let marker = L.circleMarker([
+        0, 0
+    ]).bindPopup("Wettervorhersage").addTo(overlays.weather);
+
 };
 loadWeather("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
